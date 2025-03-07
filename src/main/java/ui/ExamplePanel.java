@@ -4,6 +4,7 @@ import llms.Example;
 import utils.UI;
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 import static java.awt.BorderLayout.*;
 import static java.util.Objects.requireNonNull;
@@ -18,9 +19,9 @@ public class ExamplePanel extends JPanel {
    public static final String IMG_CIRCLE_PLAY = "Circle-Play.png";
 
    private final ImageIcon disableIcon =
-      new ImageIcon(requireNonNull(ExamplePanel.class.getResource(IMG_CIRCLE_PAUSE)));
+      new ImageIcon(requireNonNull(ExamplePanel.class.getResource("/images/" + IMG_CIRCLE_PAUSE)));
    private final ImageIcon enableIcon =
-      new ImageIcon(requireNonNull(ExamplePanel.class.getResource(IMG_CIRCLE_PLAY)));
+      new ImageIcon(requireNonNull(ExamplePanel.class.getResource("/images/" + IMG_CIRCLE_PLAY)));
 
    private final ExampleListener exampleListener;
    private final ExampleContentPanel exampleContentPanel;

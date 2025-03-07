@@ -1,7 +1,10 @@
 package llms.openai;
 
 import llms.*;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class OpenAI {
    static final String MESSAGE_ROLE_USER = "user";
@@ -19,6 +22,7 @@ public class OpenAI {
       return new CodeResponseSplitter().split(completion.firstMessageContent());
    }
 
+   // still needed?
    private Message[] toOpenAIMessages(Prompt prompt) {
       return prompt.messages().stream()
          .map(promptMessage ->
@@ -35,9 +39,15 @@ public class OpenAI {
 
    private HashMap<Object, Object> createRequestBody(Message[] messages) {
       var requestBody = new HashMap<>();
-      requestBody.put("model", "gpt-4o");
-      requestBody.put("messages", messages);
+      var model = "davinci-002"; // TODO make configurable, or even selectable
+      requestBody.put("model", model);
+
+      var prompt = Arrays.stream(messages)
+         .map(Message::content)
+         .collect(Collectors.joining("\\n"));
+      requestBody.put("prompt", prompt);
       requestBody.put("max_tokens", 4096);
+      requestBody.put("temperature", 0);
       return requestBody;
    }
 }

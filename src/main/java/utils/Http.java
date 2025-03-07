@@ -9,6 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Http {
    public Object send(HttpRequest request) {
@@ -21,12 +22,11 @@ public class Http {
             throw new JsonException("Error parsing response ", e);
          }
       } else {
-
-         throw new HttpException("Error retrieving response " + response.statusCode());
+         throw new HttpException("Error retrieving response " + response.statusCode() + "\n" + response.body());
       }
    }
 
-   public HttpRequest createPostRequest(HashMap<Object, Object> requestBody, String apiKey, String apiUrl) {
+   public HttpRequest createPostRequest(Map<Object, Object> requestBody, String apiKey, String apiUrl) {
       var jsonRequestBody = toJson(requestBody);
 
       return HttpRequest.newBuilder()
@@ -41,11 +41,13 @@ public class Http {
       try {
          return client.send(request, HttpResponse.BodyHandlers.ofString());
       } catch (Exception e) {
+         // TODO change to logger
+         System.out.println(e.fillInStackTrace());
          throw new HttpException(e);
       }
    }
 
-   private String toJson(HashMap<Object, Object> requestBody) {
+   private String toJson(Map<Object, Object> requestBody) {
       try {
          return new ObjectMapper().writeValueAsString(requestBody);
       } catch (JsonProcessingException e) {

@@ -63,9 +63,14 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
       var prompt = new Prompt(text, model.getExampleList());
 
       thread = new Thread(() -> {
-         var files = openAI.retrieveCompletion(prompt);
-         updateSourcePanels(files);
-         promptView.getParent().setCursor(getDefaultCursor());
+         try {
+            var files = openAI.retrieveCompletion(prompt);
+            updateSourcePanels(files);
+         }
+         // TODO catch and display error
+         finally {
+            promptView.getParent().setCursor(getDefaultCursor());
+         }
       });
       thread.start();
    }
