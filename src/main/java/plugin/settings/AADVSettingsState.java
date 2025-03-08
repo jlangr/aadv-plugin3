@@ -15,10 +15,14 @@ import java.util.List;
    storages = @Storage("AADVSettings.xml")
 )
 @Service(Service.Level.APP)
+// TODO convert to Java record
 public final class AADVSettingsState implements PersistentStateComponent<AADVSettingsState.State> {
+
    public static class State {
       public String apiKey = "";
       public List<Language> languages = new ArrayList<>();
+      public String model = "gpt-4-turbo";
+      public int maxTokens = 4096;
    }
 
    private State myState = new State();
@@ -36,6 +40,22 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
 
    public static AADVSettingsState getInstance() {
       return ApplicationManager.getApplication().getService(AADVSettingsState.class);
+   }
+
+   public int getMaxTokens() {
+      return myState.maxTokens;
+   }
+
+   public void setMaxTokens(int maxTokens) {
+      myState.maxTokens = maxTokens;
+   }
+
+   public String getModel() {
+      return myState.model;
+   }
+
+   public void setModel(String model) {
+      myState.model = model;
    }
 
    public String getApiKey() {

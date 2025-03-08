@@ -16,9 +16,9 @@ class APrompt {
 
       var result = prompt.messages();
 
-      Assertions.assertEquals(new PromptMessage(SYSTEM, PROMPT_ASSISTANT_GUIDELINES), result.get(0));
-      assertEquals(new PromptMessage(SYSTEM, PROMPT_CODE_STYLE), result.get(1));
-      assertEquals(new PromptMessage(SYSTEM, PROMPT_LANGUAGE_SPECIFIC_CODE_STYLE), result.get(2));
+      Assertions.assertEquals(new PromptMessage(SYSTEM, ASSISTANT_GUIDELINES), result.get(0));
+      assertEquals(new PromptMessage(SYSTEM, CODE_STYLE), result.get(1));
+      assertEquals(new PromptMessage(SYSTEM, LANGUAGE_SPECIFIC_CODE_STYLE), result.get(2));
       var userMessage = result.get(3);
       assertTrue(userMessage.text().contains("""
          text

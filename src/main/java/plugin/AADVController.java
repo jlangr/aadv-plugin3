@@ -3,7 +3,8 @@ package plugin;
 import com.intellij.openapi.project.Project;
 import llms.*;
 import llms.openai.OpenAI;
-import llms.openai.OpenAIClient;
+import llms.openai.OpenAIChatClient;
+import llms.openai.OpenAICompletionsClient;
 import plugin.settings.AADVPluginSettings;
 import ui.*;
 import utils.Console;
@@ -19,8 +20,8 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
    AADVPromptPanel promptView = new AADVPromptPanel(this, this);
    private AADVOutputPanel outputView = new AADVOutputPanel();
 
-   private final OpenAIClient openAIClient =
-      new OpenAIClient(new Http(), new AADVPluginSettings());
+   private final OpenAIChatClient openAIClient =
+      new OpenAIChatClient(new Http(), new AADVPluginSettings());
    private OpenAI openAI = new OpenAI(openAIClient);
    private AADVModel model = new AADVModel();
    private IDEAEditor ide = new IDEAEditor();

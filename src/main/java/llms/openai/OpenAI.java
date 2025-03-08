@@ -1,6 +1,7 @@
 package llms.openai;
 
 import llms.*;
+import plugin.settings.AADVSettingsState;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,9 +11,9 @@ public class OpenAI {
    static final String MESSAGE_ROLE_USER = "user";
    public static final String MESSAGE_TYPE_SYSTEM = "system";
 
-   private final OpenAIClient client;
+   private final OpenAIChatClient client;
 
-   public OpenAI(OpenAIClient client) {
+   public OpenAI(OpenAIChatClient client) {
       this.client = client;
    }
 
@@ -39,14 +40,9 @@ public class OpenAI {
 
    private HashMap<Object, Object> createRequestBody(Message[] messages) {
       var requestBody = new HashMap<>();
-      var model = "davinci-002"; // TODO make configurable, or even selectable
-      requestBody.put("model", model);
-
-      var prompt = Arrays.stream(messages)
-         .map(Message::content)
-         .collect(Collectors.joining("\\n"));
-      requestBody.put("prompt", prompt);
-      requestBody.put("max_tokens", 4096);
+      requestBody.put("model", AADVSettingsState.getInstance().getModel());
+      requestBody.put("messages", messages);
+      requestBody.put("max_tokens", AADVSettingsState.getInstance().getMaxTokens());
       requestBody.put("temperature", 0);
       return requestBody;
    }

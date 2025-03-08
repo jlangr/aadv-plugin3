@@ -9,7 +9,7 @@ import plugin.settings.AADVPluginSettings;
 import utils.Http;
 import java.net.http.HttpRequest;
 import java.util.HashMap;
-import static llms.openai.OpenAIClient.API_URL;
+import static llms.openai.OpenAICompletionsClient.API_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -27,7 +27,7 @@ class AnOpenAIClient {
    AADVPluginSettings aadvPluginSettings;
 
    @InjectMocks
-   OpenAIClient client;
+   OpenAICompletionsClient client;
 
    @Test
    void retrieveCompletion() {

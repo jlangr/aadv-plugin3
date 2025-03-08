@@ -2,16 +2,16 @@ package llms.openai;
 
 import plugin.settings.AADVPluginSettings;
 import utils.Http;
-import java.util.HashMap;
+
 import java.util.Map;
 
-public class OpenAIClient {
-   public static final String API_URL = "https://api.openai.com/v1/completions";
+public class OpenAIChatClient {
+   public static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
    private final Http http;
    private final AADVPluginSettings aadvPluginSettings;
 
-   public OpenAIClient(Http http, AADVPluginSettings aadvPluginSettings) {
+   public OpenAIChatClient(Http http, AADVPluginSettings aadvPluginSettings) {
       this.http = http;
       this.aadvPluginSettings = aadvPluginSettings;
    }

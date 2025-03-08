@@ -18,7 +18,7 @@ class AnOpenAI {
    OpenAI openAI;
 
    @Mock
-   OpenAIClient client;
+   OpenAICompletionsClient client;
 
    @Test
    void retrieveCompletionExtractsSourceFilesFromResponse() {
