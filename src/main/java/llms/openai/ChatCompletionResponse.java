@@ -8,6 +8,6 @@ public record ChatCompletionResponse(
    String id, String object, long created, String model, List<Choice>choices, Usage usage) {
 
    public String firstMessageContent() {
-      return choices().get(0).text();
+      return choices().get(0).message().content();
    }
 }

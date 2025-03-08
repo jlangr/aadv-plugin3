@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record Choice(
    int index,
-   String text,
+   Message message,
    Object logprobs,
    String finishReason
-   // TODO specify a limit!
 ) {}

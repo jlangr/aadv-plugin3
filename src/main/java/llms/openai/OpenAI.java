@@ -25,11 +25,10 @@ public class OpenAI {
       return new CodeResponseSplitter().split(completion.firstMessageContent());
    }
 
-   // still needed?
    private Message[] toOpenAIMessages(Prompt prompt) {
       return prompt.messages().stream()
          .map(promptMessage ->
-            new Message(role(promptMessage.promptMessageType()), promptMessage.text()))
+            new Message(role(promptMessage.promptMessageType()), promptMessage.text(), null))
          .toArray(Message[]::new);
    }
 
