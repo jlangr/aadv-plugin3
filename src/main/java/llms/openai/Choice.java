@@ -8,4 +8,5 @@ public record Choice(
    String text,
    Object logprobs,
    String finishReason
+   // TODO specify a limit!
 ) {}

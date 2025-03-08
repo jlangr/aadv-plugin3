@@ -49,6 +49,6 @@ public record Prompt(String promptText, ExampleList examples) {
          format(LINE, PROMPT_HEADER) +
          promptText +
          format(LINE, EXAMPLES_HEADER) +
-         format(LINE, examples.toPromptText());
+         (examples.getAll().isEmpty() ? "" : format(LINE, examples.toPromptText()));
    }
 }

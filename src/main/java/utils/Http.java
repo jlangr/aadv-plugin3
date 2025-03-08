@@ -28,6 +28,7 @@ public class Http {
 
    public HttpRequest createPostRequest(Map<Object, Object> requestBody, String apiKey, String apiUrl) {
       var jsonRequestBody = toJson(requestBody);
+      System.out.println("SENDING: "+ jsonRequestBody);
 
       return HttpRequest.newBuilder()
          .uri(URI.create(apiUrl))
@@ -39,7 +40,8 @@ public class Http {
 
    private HttpResponse<String> httpSend(HttpClient client, HttpRequest request) {
       try {
-         return client.send(request, HttpResponse.BodyHandlers.ofString());
+//         return null; // client.send(request, HttpResponse.BodyHandlers.ofString());
+         return  client.send(request, HttpResponse.BodyHandlers.ofString());
       } catch (Exception e) {
          // TODO change to logger
          System.out.println(e.fillInStackTrace());

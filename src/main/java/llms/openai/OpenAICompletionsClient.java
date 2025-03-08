@@ -18,6 +18,7 @@ public class OpenAICompletionsClient {
    public ChatCompletionResponse retrieveCompletion(Map<Object, Object> requestBody) {
       var apiKey = aadvPluginSettings.retrieveAPIKey();
 
+      System.out.println("POSTING: " + requestBody);
       var request = http.createPostRequest(requestBody, apiKey, API_URL);
 
       return (ChatCompletionResponse)http.send(request);
