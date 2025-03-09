@@ -18,7 +18,7 @@ class AnAADVSettingsState {
    void setApplication() {
       application = mock(Application.class);
       ApplicationManager.setApplication(application);
-      AADVSettingsState.resetInstance();
+      AADVSettingsState.reset();
    }
 
    @Test

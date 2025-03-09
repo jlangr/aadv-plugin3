@@ -2,7 +2,6 @@ package llms.openai;
 
 import llms.ExampleList;
 import llms.Prompt;
-import org.junit.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,12 +26,12 @@ class AnOpenAI {
 
    @BeforeEach
    void setUp() {
-      AADVSettingsState.setInstance(new AADVSettingsState());
+      AADVSettingsState.set(new AADVSettingsState());
    }
 
    @AfterEach
    void cleanUp() {
-      AADVSettingsState.resetInstance();
+      AADVSettingsState.reset();
    }
 
    @Test

@@ -25,10 +25,10 @@ public class LLMAPISettingsComponent {
       }
    }
 
-   public LLMAPISettingsComponent(LLMAPISettings llmapiSettings) {
+   public LLMAPISettingsComponent() {
       panel = new JPanel(new GridBagLayout());
-      apiKeyField = new JBTextField(llmapiSettings.apiKey());
-      maxTokensField = new JBTextField(String.valueOf(llmapiSettings.maxTokens()));
+      apiKeyField = new JBTextField(AADVSettingsState.get().getApiKey());
+      maxTokensField = new JBTextField(String.valueOf(AADVSettingsState.get().getMaxTokens()));
       maxTokensField.setInputVerifier(new NumericInputVerifier());
 
       var gbc = new GridBagConstraints();

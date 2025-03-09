@@ -30,7 +30,7 @@ class AnOpenAIClient {
    void retrieveCompletion() {
       var settingsState = new AADVSettingsState();
       settingsState.setApiKey("apikey");
-      AADVSettingsState.setInstance(settingsState);
+      AADVSettingsState.set(settingsState);
       var chatCompletionResponse = new ChatCompletionResponseBuilder().build();
 //      when(aadvPluginSettings.retrieveAPIKey()).thenReturn("apikey");
       when(http.createPostRequest(eq(requestBody), eq("apikey"), eq(API_URL)))

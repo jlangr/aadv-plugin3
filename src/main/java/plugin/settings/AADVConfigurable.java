@@ -18,7 +18,7 @@ public class AADVConfigurable implements Configurable {
    @Nullable
    @Override
    public JComponent createComponent() {
-      aadvSettingsComponent = new AADVSettingsComponent();
+      aadvSettingsComponent = new AADVSettingsComponent(new LLMAPISettingsComponent());
       return aadvSettingsComponent;
    }
 

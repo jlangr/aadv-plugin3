@@ -10,13 +10,14 @@ public class AADVSettingsComponent extends JPanel {
     public static final String MSG_CODING_STYLE = "Coding Style";
 
     private final StyleSettingsComponent styleSettingsComponent;
-    LLMAPISettingsComponent llmapiSettingsComponent;
+    private final LLMAPISettingsComponent llmapiSettingsComponent;
 
-    public AADVSettingsComponent() {
+    public AADVSettingsComponent(LLMAPISettingsComponent llmapiSettingsComponent)  {
+        this.llmapiSettingsComponent = llmapiSettingsComponent;
         setLayout(new BorderLayout());
 
+        // NEW:
         this.styleSettingsComponent = new StyleSettingsComponent();
-        this.llmapiSettingsComponent = new LLMAPISettingsComponent(AADVSettingsState.get().getLLMAPISettings());
 
         var tabbedPane = new JBTabbedPane();
 
@@ -31,6 +32,7 @@ public class AADVSettingsComponent extends JPanel {
     }
 
     public void apply() {
+        // do we need these conditionals
         if (styleSettingsComponent.isModified())
             styleSettingsComponent.apply();
         if (llmapiSettingsComponent.isModified())

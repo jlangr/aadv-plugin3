@@ -34,11 +34,11 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
       return instance;
    }
 
-   public static void resetInstance() {
+   public static void reset() {
       instance = null;
    }
 
-   public static void setInstance(AADVSettingsState settingsState) {
+   public static void set(AADVSettingsState settingsState) {
       instance = settingsState;
    }
 
