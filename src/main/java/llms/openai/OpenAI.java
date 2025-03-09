@@ -7,7 +7,6 @@ import llms.PromptMessageType;
 import plugin.settings.AADVSettingsState;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class OpenAI {
    static final String MESSAGE_ROLE_USER = "user";
@@ -41,10 +40,9 @@ public class OpenAI {
 
    private HashMap<Object, Object> createRequestBody(Message[] messages) {
       var requestBody = new HashMap<>();
-      requestBody.put("model", AADVSettingsState.getInstance().getModel());
+      requestBody.put("model", AADVSettingsState.get().getModel());
       requestBody.put("messages", messages);
-      requestBody.put("max_tokens", AADVSettingsState.getInstance().getMaxTokens());
-//      requestBody.put("max_tokens", 4096); // TODO
+      requestBody.put("max_tokens", AADVSettingsState.get().getMaxTokens());
       requestBody.put("temperature", 0);
       return requestBody;
    }

@@ -16,7 +16,7 @@ public class AADVSettingsComponent extends JPanel {
         setLayout(new BorderLayout());
 
         this.styleSettingsComponent = new StyleSettingsComponent();
-        this.llmapiSettingsComponent = new LLMAPISettingsComponent(AADVSettingsState.getInstance().getLLMAPISettings());
+        this.llmapiSettingsComponent = new LLMAPISettingsComponent(AADVSettingsState.get().getLLMAPISettings());
 
         var tabbedPane = new JBTabbedPane();
 

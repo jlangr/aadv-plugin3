@@ -13,7 +13,7 @@ public class StyleSettingsComponent extends JPanel {
    private final StyleSettings styleSettings;
 
    public StyleSettingsComponent() {
-      this.styleSettings = AADVSettingsState.getInstance().getStyleSettings();
+      this.styleSettings = AADVSettingsState.get().getStyleSettings();
 
       setLayout(new BorderLayout());
 
@@ -122,16 +122,16 @@ public class StyleSettingsComponent extends JPanel {
    }
 
    public boolean isModified() {
-      var currentSettings = AADVSettingsState.getInstance().getStyleSettings();
+      var currentSettings = AADVSettingsState.get().getStyleSettings();
       return !styleSettings.equals(currentSettings);
    }
 
    public void apply() {
-      AADVSettingsState.getInstance().setStyleSettings(cloneStyleSettings(styleSettings));
+      AADVSettingsState.get().setStyleSettings(cloneStyleSettings(styleSettings));
    }
 
    public void reset() {
-      var currentSettings = AADVSettingsState.getInstance().getStyleSettings();
+      var currentSettings = AADVSettingsState.get().getStyleSettings();
       styleSettings.languages().clear();
       styleSettings.languages().addAll(currentSettings.languages());
 

@@ -20,6 +20,7 @@ import static java.util.Arrays.stream;
 class AADVSettingsStateBuilder {
    private String apiKey;
    private List<Language> languages = new ArrayList<>();
+   private int maxTokens;
 
    AADVSettingsStateBuilder withApiKey(String apiKey) {
       this.apiKey = apiKey;
@@ -33,10 +34,16 @@ class AADVSettingsStateBuilder {
       return this;
    }
 
+   public AADVSettingsStateBuilder withMaxTokens(int maxTokens) {
+      this.maxTokens = maxTokens;
+      return this;
+   }
+
    AADVSettingsState build() {
       var state = new AADVSettingsState();
       state.setApiKey(apiKey);
       state.setStyleSettings(new StyleSettings(languages));
+      state.setMaxTokens(maxTokens);
       return state;
    }
 }

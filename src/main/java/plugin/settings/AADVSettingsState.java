@@ -15,9 +15,8 @@ import java.util.List;
    storages = @Storage("AADVSettings.xml")
 )
 @Service(Service.Level.APP)
-// TODO convert to Java record
+// TODO convert to Java record. How else can this be streamlined?
 public final class AADVSettingsState implements PersistentStateComponent<AADVSettingsState.State> {
-
    public static class State {
       public String apiKey = "";
       public List<Language> languages = new ArrayList<>();
@@ -26,6 +25,22 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
    }
 
    private State myState = new State();
+
+   private static AADVSettingsState instance;
+
+   public static AADVSettingsState get() {
+      if (instance == null)
+         instance = ApplicationManager.getApplication().getService(AADVSettingsState.class);
+      return instance;
+   }
+
+   public static void resetInstance() {
+      instance = null;
+   }
+
+   public static void setInstance(AADVSettingsState settingsState) {
+      instance = settingsState;
+   }
 
    @Nullable
    @Override
@@ -36,10 +51,6 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
    @Override
    public void loadState(@NotNull State state) {
       this.myState = state;
-   }
-
-   public static AADVSettingsState getInstance() {
-      return ApplicationManager.getApplication().getService(AADVSettingsState.class);
    }
 
    public int getMaxTokens() {
@@ -63,7 +74,7 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
    }
 
    public void setApiKey(String apiKey) {
-      myState.apiKey = apiKey;
+      myState.apiKey = apiKey.trim();
    }
 
    public StyleSettings getStyleSettings() {
@@ -75,7 +86,7 @@ public final class AADVSettingsState implements PersistentStateComponent<AADVSet
    }
 
    public LLMAPISettings getLLMAPISettings() {
-      return new LLMAPISettings(myState.apiKey);
+      return new LLMAPISettings(myState.apiKey, myState.maxTokens);
    }
 
    public void setLLMAPISettings(LLMAPISettings llmapiSettings) {

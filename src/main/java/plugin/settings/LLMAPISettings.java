@@ -1,5 +1,5 @@
 package plugin.settings;
 
-public record LLMAPISettings(String apiKey) {
+public record LLMAPISettings(String apiKey, int maxTokens) {
 }
 

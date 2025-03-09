@@ -4,16 +4,13 @@ package plugin.settings;
 // What's the possibility of the settingsState instance being null
 
 public class AADVPluginSettings {
-   public String retrieveAPIKey() {
-      var settingsState = AADVSettingsState.getInstance();
-      if (settingsState == null || settingsState.getApiKey() == null)
-         return null;
-
-      return settingsState.getApiKey().trim();
+   public String xretrieveAPIKey() {
+      var settingsState = AADVSettingsState.get();
+      return settingsState.getApiKey();
    }
 
    public int retrieveMaxTokens() {
-      var settingsState = AADVSettingsState.getInstance();
+      var settingsState = AADVSettingsState.get();
       return settingsState.getMaxTokens();
    }
 }

@@ -4,8 +4,7 @@ import com.intellij.openapi.project.Project;
 import llms.*;
 import llms.openai.OpenAI;
 import llms.openai.OpenAIChatClient;
-import llms.openai.OpenAICompletionsClient;
-import plugin.settings.AADVPluginSettings;
+import plugin.settings.AADVSettingsState;
 import ui.*;
 import utils.Console;
 import utils.Http;
@@ -21,12 +20,11 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
    private AADVOutputPanel outputView = new AADVOutputPanel();
 
    private final OpenAIChatClient openAIClient =
-      new OpenAIChatClient(new Http(), new AADVPluginSettings());
+      new OpenAIChatClient(new Http());
    private OpenAI openAI = new OpenAI(openAIClient);
    private AADVModel model = new AADVModel();
    private IDEAEditor ide = new IDEAEditor();
    private IDGenerator idGenerator = new IDGenerator();
-   private AADVPluginSettings aadvPluginSettings = new AADVPluginSettings();
    private final Console console = new Console();
 
    Thread thread;
@@ -51,8 +49,7 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
    @Override
    public void send(String text) {
-      var apiKey = aadvPluginSettings.retrieveAPIKey();
-      if (apiKey == null) {
+      if (AADVSettingsState.get().getApiKey() == null) {
          promptView.showMessage(AADVPromptPanel.MSG_KEY_NOT_CONFIGURED);
          return;
       }
@@ -78,8 +75,14 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
    @Override
    public void dump() {
+      console.log("--- BEGIN DUMP ---");
       console.log("PROMPT:\n");
       console.log(model.dumpPrompt());
+      console.log("SETTINGS:\n");
+      var key = AADVSettingsState.get().getApiKey();
+      console.log("api key: " + (key.length() < 6 ? key : key.substring(0, 6) + "..."));
+      console.log("max tokens: " + AADVSettingsState.get().getMaxTokens());
+      console.log("--- END DUMP ---");
    }
 
    @Override
@@ -163,11 +166,6 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
    public void setOutputView(AADVOutputPanel outputView) {
       this.outputView = outputView;
-   }
-
-   public void setAADVPluginSettings(AADVPluginSettings aadvPluginSettings) {
-
-      this.aadvPluginSettings = aadvPluginSettings;
    }
 
    public void setOpenAI(OpenAI openAI) {
