@@ -3,7 +3,7 @@ package plugin.settings;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.JBUI;
 import llms.openai.OpenAISettings;
-import utils.Reflect;
+import utils.ReflectUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +45,7 @@ public class SettingsComponent extends JComponent{
          var setting = OpenAISettings.allSettings.get(name);
 
          var textField = new JBTextField(setting.retriever().get());
-         var inputVerifier = Reflect.instantiate(setting.inputVerifierClass(), SettingsComponent.this);
+         var inputVerifier = ReflectUtils.instantiate(setting.inputVerifierClass(), SettingsComponent.this);
          textField.setInputVerifier(inputVerifier);
 
          return new Field(setting, textField);
