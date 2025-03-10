@@ -10,6 +10,7 @@ import utils.Http;
 import java.net.http.HttpRequest;
 import java.util.HashMap;
 import static llms.openai.OpenAIChatClient.API_URL;
+import static llms.openai.OpenAIChatClient.OPEN_AI_API_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -29,7 +30,7 @@ class AnOpenAIClient {
    @Test
    void retrieveCompletion() {
       var settingsState = new AADVSettingsState();
-      settingsState.setApiKey("apikey");
+      settingsState.set(OPEN_AI_API_KEY, "apikey");
       AADVSettingsState.set(settingsState);
       var chatCompletionResponse = new ChatCompletionResponseBuilder().build();
 //      when(aadvPluginSettings.retrieveAPIKey()).thenReturn("apikey");

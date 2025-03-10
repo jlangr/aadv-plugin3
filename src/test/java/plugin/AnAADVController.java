@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import plugin.settings.AADVPluginSettings;
 import plugin.settings.AADVSettingsState;
 import ui.AADVPromptPanel;
 import ui.SourcePanel;
@@ -21,6 +20,7 @@ import java.util.List;
 
 import static llms.FileType.PROD;
 import static llms.FileType.TEST;
+import static llms.openai.OpenAIChatClient.OPEN_AI_API_KEY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -73,7 +73,7 @@ class AnAADVController {
          @Disabled
          @Test
          void showsErrorWhenApiKeyNull() {
-            AADVSettingsState.get().setApiKey("");
+            AADVSettingsState.get().set(OPEN_AI_API_KEY, "");
 //            when(aadvPluginSettings.retrieveAPIKey()).thenReturn(null);
 
             controller.send("");
@@ -90,7 +90,7 @@ class AnAADVController {
             @BeforeEach
             void setup() {
                // TODO
-               AADVSettingsState.get().setApiKey("key");
+               AADVSettingsState.get().set(OPEN_AI_API_KEY, "key");
 //               when(aadvPluginSettings.retrieveAPIKey()).thenReturn("key");
                when(promptView.getParent()).thenReturn(new JPanel());
             }

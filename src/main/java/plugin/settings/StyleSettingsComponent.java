@@ -10,24 +10,24 @@ public class StyleSettingsComponent extends JPanel {
    private DefaultListModel<String> languageListModel;
    private JBList<String> languageList;
    private JPanel rulePanel;
-   private final StyleSettings styleSettings;
+   private final StyleSettings styleSettings = null;
 
    public StyleSettingsComponent() {
-      this.styleSettings = AADVSettingsState.get().getStyleSettings();
-
-      setLayout(new BorderLayout());
-
-      var leftPanel = createLeftPanel();
-      rulePanel = createRulePanel();
-
-      add(leftPanel, BorderLayout.WEST);
-      var scrollableRulePanel = new JBScrollPane(rulePanel);
-      scrollableRulePanel.setVerticalScrollBarPolicy(JBScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-      add(scrollableRulePanel, BorderLayout.CENTER);
-
-      setupEventListeners();
-
-      updateUIFromModel();
+//      this.styleSettings = AADVSettingsState.get("style-settings");
+//
+//      setLayout(new BorderLayout());
+//
+//      var leftPanel = createLeftPanel();
+//      rulePanel = createRulePanel();
+//
+//      add(leftPanel, BorderLayout.WEST);
+//      var scrollableRulePanel = new JBScrollPane(rulePanel);
+//      scrollableRulePanel.setVerticalScrollBarPolicy(JBScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+//      add(scrollableRulePanel, BorderLayout.CENTER);
+//
+//      setupEventListeners();
+//
+//      updateUIFromModel();
    }
 
    private JPanel createLeftPanel() {
@@ -121,34 +121,30 @@ public class StyleSettingsComponent extends JPanel {
       rulePanel.add(ruleComponent, -1);
    }
 
-   public boolean isModified() {
-      var currentSettings = AADVSettingsState.get().getStyleSettings();
-      return !styleSettings.equals(currentSettings);
-   }
 
    public void apply() {
-      AADVSettingsState.get().setStyleSettings(cloneStyleSettings(styleSettings));
+//      AADVSettingsState.get().setStyleSettings(cloneStyleSettings(styleSettings));
    }
 
    public void reset() {
-      var currentSettings = AADVSettingsState.get().getStyleSettings();
-      styleSettings.languages().clear();
-      styleSettings.languages().addAll(currentSettings.languages());
-
-      updateUIFromModel();
+//      var currentSettings = AADVSettingsState.get().getStyleSettings();
+//      styleSettings.languages().clear();
+//      styleSettings.languages().addAll(currentSettings.languages());
+//
+//      updateUIFromModel();
    }
 
    public void updateUIFromModel() {
-      languageListModel.clear();
-      for (var language : styleSettings.languages())
-         languageListModel.addElement(language.getName());
-
-      if (!styleSettings.languages().isEmpty()) {
-         languageList.setSelectedIndex(0); // Ensure a language is selected
-         updateRuleList();
-      }
-      revalidate();
-      repaint();
+//      languageListModel.clear();
+//      for (var language : styleSettings.languages())
+//         languageListModel.addElement(language.getName());
+//
+//      if (!styleSettings.languages().isEmpty()) {
+//         languageList.setSelectedIndex(0); // Ensure a language is selected
+//         updateRuleList();
+//      }
+//      revalidate();
+//      repaint();
    }
 
    private StyleSettings cloneStyleSettings(StyleSettings settings) {

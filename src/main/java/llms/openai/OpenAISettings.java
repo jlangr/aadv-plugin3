@@ -6,20 +6,25 @@ import plugin.settings.inputverifiers.NumericInputVerifier;
 
 import java.util.Map;
 
+import static llms.openai.OpenAIChatClient.OPEN_AI_API_KEY;
+import static llms.openai.OpenAIChatClient.OPEN_AI_MAX_TOKENS;
+
 public class OpenAISettings {
    public static final Map<String, Setting> allSettings = Map.of(
-      "openai-api-key",
-      new Setting("openai-api-key",
+      OPEN_AI_API_KEY,
+      new Setting(OPEN_AI_API_KEY,
          "OpenAI API Key",
-         () -> AADVSettingsState.get().getApiKey(),
-         (String fieldValue) -> AADVSettingsState.get().setApiKey(fieldValue)
+         "",
+         () -> AADVSettingsState.get().get(OPEN_AI_API_KEY),
+         (String fieldValue) -> AADVSettingsState.get().set(OPEN_AI_API_KEY, fieldValue)
       ),
 
-      "max-tokens",
-      new Setting("max-tokens",
+      OPEN_AI_MAX_TOKENS,
+      new Setting(OPEN_AI_MAX_TOKENS,
          "Max Tokens",
-         () -> String.valueOf(AADVSettingsState.get().getMaxTokens()),
-         (String fieldValue) -> AADVSettingsState.get().setMaxTokens(Integer.parseInt(fieldValue)),
+         "4096",
+         () -> String.valueOf(AADVSettingsState.get().get(OPEN_AI_MAX_TOKENS)),
+         (String fieldValue) -> AADVSettingsState.get().set(OPEN_AI_MAX_TOKENS, fieldValue),
          NumericInputVerifier.class
       )
    );

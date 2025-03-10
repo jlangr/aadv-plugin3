@@ -50,17 +50,12 @@ class AnAADVSettingsComponent {
       assertEquals(1, components.length);
 
       var tabbedPane = (JTabbedPane) components[0];
-      assertEquals(2, tabbedPane.getTabCount());
+      assertEquals(1, tabbedPane.getTabCount());
    }
 
    @Test
    void apiSettings() {
       assertEquals(MSG_LLM_APIS, getTabbedPane().getTitleAt(0));
-   }
-
-   @Test
-   void styleSettings() {
-      assertEquals(MSG_CODING_STYLE, getTabbedPane().getTitleAt(1));
    }
 
    private JTabbedPane getTabbedPane() {

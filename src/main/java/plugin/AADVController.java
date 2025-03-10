@@ -12,6 +12,8 @@ import utils.IDGenerator;
 import utils.idea.IDEAEditor;
 
 import static java.awt.Cursor.*;
+import static llms.openai.OpenAIChatClient.OPEN_AI_API_KEY;
+import static llms.openai.OpenAIChatClient.OPEN_AI_MAX_TOKENS;
 
 public class AADVController implements PromptListener, SourcePanelListener, ExampleListener {
    private static AADVController controller = null;
@@ -49,7 +51,7 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
    @Override
    public void send(String text) {
-      if (AADVSettingsState.get().getApiKey() == null) {
+      if (AADVSettingsState.get().get(OPEN_AI_API_KEY) == null) {
          promptView.showMessage(AADVPromptPanel.MSG_KEY_NOT_CONFIGURED);
          return;
       }
@@ -79,9 +81,9 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
       console.log("PROMPT:\n");
       console.log(model.dumpPrompt());
       console.log("SETTINGS:\n");
-      var key = AADVSettingsState.get().getApiKey();
+      var key = AADVSettingsState.get().get(OPEN_AI_API_KEY);
       console.log("api key: " + (key.length() < 6 ? key : key.substring(0, 6) + "..."));
-      console.log("max tokens: " + AADVSettingsState.get().getMaxTokens());
+      console.log("max tokens: " + AADVSettingsState.get().get(OPEN_AI_MAX_TOKENS));
       console.log("--- END DUMP ---");
    }
 
