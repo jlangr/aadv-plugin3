@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class SettingsComponent {
+public class SettingsComponent extends JComponent{
    private final JPanel panel;
    private final List<Field> fields;
    private final List<String> settings;
@@ -45,7 +45,7 @@ public class SettingsComponent {
          var setting = OpenAISettings.allSettings.get(name);
 
          var textField = new JBTextField(setting.retriever().get());
-         var inputVerifier = Reflect.instantiate(setting.inputVerifierClass());
+         var inputVerifier = Reflect.instantiate(setting.inputVerifierClass(), SettingsComponent.this);
          textField.setInputVerifier(inputVerifier);
 
          return new Field(setting, textField);

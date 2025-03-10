@@ -7,7 +7,6 @@ import javax.swing.*;
 public class NumericInputVerifier extends InputVerifier {
    private final JComponent parent;
 
-   // TODO: construct with the component parent
    public NumericInputVerifier(JComponent parent) {
       this.parent = parent;
    }
