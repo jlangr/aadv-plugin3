@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class SettingsComponent extends JComponent{
+public class SettingsComponent extends JComponent {
    private final JPanel panel;
    private final List<Field> fields;
    private final List<String> settings;
