@@ -1,5 +1,6 @@
 package plugin;
 
+import com.google.common.base.Strings;
 import com.intellij.openapi.project.Project;
 import llms.*;
 import llms.openai.OpenAI;
@@ -51,14 +52,14 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
    @Override
    public void send(String text) {
-      if (AADVSettingsState.instance().get(OPEN_AI_API_KEY) == null) {
+      if (Strings.isNullOrEmpty(AADVSettingsState.instance().get(OPEN_AI_API_KEY))) {
          promptView.showMessage(AADVPromptPanel.MSG_KEY_NOT_CONFIGURED);
          return;
       }
 
       model.setPromptText(text); // TODO can this be deleted
 
-      if (promptView.getParent() != null)
+//      if (promptView.getParent() != null)
          promptView.getParent().setCursor(getPredefinedCursor(WAIT_CURSOR));
 
       var prompt = new Prompt(text, model.getExampleList());

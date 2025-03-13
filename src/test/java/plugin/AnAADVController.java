@@ -80,7 +80,6 @@ class AnAADVController {
 
       @Nested
       class SendPrompt {
-//         @Disabled
          @Test
          void showsErrorWhenApiKeyNull() {
             AADVSettingsState.instance().set(OPEN_AI_API_KEY, "");
