@@ -58,7 +58,8 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
 
       model.setPromptText(text); // TODO can this be deleted
 
-      promptView.getParent().setCursor(getPredefinedCursor(WAIT_CURSOR));
+      if (promptView.getParent() != null)
+         promptView.getParent().setCursor(getPredefinedCursor(WAIT_CURSOR));
 
       var prompt = new Prompt(text, model.getExampleList());
 
@@ -67,7 +68,9 @@ public class AADVController implements PromptListener, SourcePanelListener, Exam
             var files = openAI.retrieveCompletion(prompt);
             updateSourcePanels(files);
          }
-         // TODO catch and display error
+         catch (Exception e) {
+            promptView.showMessage(e.getMessage());
+         }
          finally {
             promptView.getParent().setCursor(getDefaultCursor());
          }

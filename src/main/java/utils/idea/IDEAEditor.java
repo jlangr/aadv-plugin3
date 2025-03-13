@@ -18,7 +18,6 @@ import static com.intellij.openapi.ui.Messages.showMessageDialog;
 import static com.intellij.util.ui.UIUtil.getWarningIcon;
 import static java.lang.String.format;
 
-// TODO: AI-generated. needs update to use non-deprecated APIs
 public class IDEAEditor {
    static final String MSG_CANNOT_APPLY_SOURCE = "AADV: Unable to apply source";
    static final String MSG_SOURCE_NOT_FOUND = "Source file not found: %s. Create a new Java class with this name.";
@@ -27,10 +26,7 @@ public class IDEAEditor {
    public void replaceEditorContent(Project project, SourceFile sourceFile) {
       var virtualFileOptional = firstVirtualFileEndingWith(project, sourceFile.fileName());
       if (virtualFileOptional.isEmpty()) {
-         // TODO temporary dump to see if problem happens again
-         var virtualFilesByName = FilenameIndex.getVirtualFilesByName(project, sourceFile.fileName(), GlobalSearchScope.projectScope(project));
-         System.out.println("files: " + virtualFilesByName);
-         // end todo
+         temporaryDumpToSeeIfProblemHappensAgain(project, sourceFile); // TODO remove
 
          showMessageDialog(project,
             format(MSG_SOURCE_NOT_FOUND, sourceFile.fileName()), MSG_CANNOT_APPLY_SOURCE, getWarningIcon());
@@ -50,6 +46,11 @@ public class IDEAEditor {
 
       replaceText(project, sourceFile, editorOptional.get());
       focus(project, editorOptional.get());
+   }
+
+   private void temporaryDumpToSeeIfProblemHappensAgain(Project project, SourceFile sourceFile) {
+      var virtualFilesByName = FilenameIndex.getVirtualFilesByName(project, sourceFile.fileName(), GlobalSearchScope.projectScope(project));
+      System.out.println("files: " + virtualFilesByName);
    }
 
    void replaceText(Project project, SourceFile sourceFile, Editor editor) {

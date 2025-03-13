@@ -26,6 +26,16 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AnAADVController {
+   @BeforeEach
+   void setup() {
+      AADVSettingsState.set(new AADVSettingsState());
+   }
+
+   @AfterEach
+   void cleanup() {
+      AADVSettingsState.reset();
+   }
+
    @Test
    void isRetrievedViaSingletonAccessor() {
       var controller = AADVController.get(null);
@@ -70,11 +80,10 @@ class AnAADVController {
 
       @Nested
       class SendPrompt {
-         @Disabled
+//         @Disabled
          @Test
          void showsErrorWhenApiKeyNull() {
             AADVSettingsState.instance().set(OPEN_AI_API_KEY, "");
-//            when(aadvPluginSettings.retrieveAPIKey()).thenReturn(null);
 
             controller.send("");
 
@@ -89,9 +98,7 @@ class AnAADVController {
 
             @BeforeEach
             void setup() {
-               // TODO
                AADVSettingsState.instance().set(OPEN_AI_API_KEY, "key");
-//               when(aadvPluginSettings.retrieveAPIKey()).thenReturn("key");
                when(promptView.getParent()).thenReturn(new JPanel());
             }
 

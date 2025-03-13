@@ -40,8 +40,7 @@ public class Http {
 
    private HttpResponse<String> httpSend(HttpClient client, HttpRequest request) {
       try {
-//         return null; // client.send(request, HttpResponse.BodyHandlers.ofString());
-         return  client.send(request, HttpResponse.BodyHandlers.ofString());
+         return client.send(request, HttpResponse.BodyHandlers.ofString());
       } catch (Exception e) {
          // TODO change to logger
          System.out.println(e.fillInStackTrace());
@@ -53,7 +52,7 @@ public class Http {
       try {
          return new ObjectMapper().writeValueAsString(requestBody);
       } catch (JsonProcessingException e) {
-         throw new RuntimeException(e);
+         throw new JsonException("unable to create JSON from " + requestBody, e);
       }
    }
 }

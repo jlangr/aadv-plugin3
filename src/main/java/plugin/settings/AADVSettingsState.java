@@ -13,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
    storages = @Storage("AADVSettings.xml")
 )
 @Service(Service.Level.APP)
-// TODO convert to Java record. How else can this be streamlined?
 public final class AADVSettingsState implements PersistentStateComponent<plugin.settings.State> {
    private plugin.settings.State myState = new plugin.settings.State();
 

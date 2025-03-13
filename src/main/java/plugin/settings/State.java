@@ -5,13 +5,13 @@ import java.util.Map;
 
 import static llms.openai.OpenAIChatClient.OPEN_AI_API_KEY;
 import static llms.openai.OpenAIChatClient.OPEN_AI_MAX_TOKENS;
+import static llms.openai.OpenAIChatClient.OPEN_AI_CHAT_MODEL;
 
 public class State {
    private static final Map<String, String> values = new HashMap<>();
 
    State() {
-      // TODO pull from elsewhere
-      values.put("model", "gpt-4-turbo");
+      values.put(OPEN_AI_CHAT_MODEL, "gpt-4-turbo");
       values.put(OPEN_AI_API_KEY, "");
       values.put(OPEN_AI_MAX_TOKENS, "4096");
    }

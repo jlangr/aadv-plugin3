@@ -19,11 +19,6 @@ public class Rule {
       return id;
    }
 
-   // TODO can this be deleted
-   public void setId(String id) {
-      this.id = id;
-   }
-
    public String getText() {
       return text;
    }
