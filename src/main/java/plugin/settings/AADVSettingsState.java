@@ -19,7 +19,7 @@ public final class AADVSettingsState implements PersistentStateComponent<plugin.
 
    private static AADVSettingsState instance;
 
-   public static AADVSettingsState get() {
+   public static AADVSettingsState instance() {
       if (instance == null)
          instance = ApplicationManager.getApplication().getService(AADVSettingsState.class);
       return instance;

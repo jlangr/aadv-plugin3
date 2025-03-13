@@ -43,9 +43,9 @@ public class OpenAI {
 
    private Map<Object, Object> createRequestBody(Message[] messages) {
       var requestBody = new HashMap<>();
-      requestBody.put("model", AADVSettingsState.get().get("model"));
+      requestBody.put("model", AADVSettingsState.instance().get("model"));
       requestBody.put("messages", messages);
-      requestBody.put("max_tokens", AADVSettingsState.get().get(OPEN_AI_MAX_TOKENS));
+      requestBody.put("max_tokens", AADVSettingsState.instance().get(OPEN_AI_MAX_TOKENS));
       requestBody.put("temperature", 0);
       return requestBody;
    }

@@ -73,7 +73,7 @@ class AnAADVController {
          @Disabled
          @Test
          void showsErrorWhenApiKeyNull() {
-            AADVSettingsState.get().set(OPEN_AI_API_KEY, "");
+            AADVSettingsState.instance().set(OPEN_AI_API_KEY, "");
 //            when(aadvPluginSettings.retrieveAPIKey()).thenReturn(null);
 
             controller.send("");
@@ -90,7 +90,7 @@ class AnAADVController {
             @BeforeEach
             void setup() {
                // TODO
-               AADVSettingsState.get().set(OPEN_AI_API_KEY, "key");
+               AADVSettingsState.instance().set(OPEN_AI_API_KEY, "key");
 //               when(aadvPluginSettings.retrieveAPIKey()).thenReturn("key");
                when(promptView.getParent()).thenReturn(new JPanel());
             }

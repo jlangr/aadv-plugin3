@@ -15,16 +15,16 @@ public class OpenAISettings {
       new Setting(OPEN_AI_API_KEY,
          "OpenAI API Key",
          "",
-         () -> AADVSettingsState.get().get(OPEN_AI_API_KEY),
-         (String fieldValue) -> AADVSettingsState.get().set(OPEN_AI_API_KEY, fieldValue)
+         () -> AADVSettingsState.instance().get(OPEN_AI_API_KEY),
+         (String fieldValue) -> AADVSettingsState.instance().set(OPEN_AI_API_KEY, fieldValue)
       ),
 
       OPEN_AI_MAX_TOKENS,
       new Setting(OPEN_AI_MAX_TOKENS,
          "Max Tokens",
          "4096",
-         () -> String.valueOf(AADVSettingsState.get().get(OPEN_AI_MAX_TOKENS)),
-         (String fieldValue) -> AADVSettingsState.get().set(OPEN_AI_MAX_TOKENS, fieldValue),
+         () -> String.valueOf(AADVSettingsState.instance().get(OPEN_AI_MAX_TOKENS)),
+         (String fieldValue) -> AADVSettingsState.instance().set(OPEN_AI_MAX_TOKENS, fieldValue),
          NumericInputVerifier.class
       )
    );

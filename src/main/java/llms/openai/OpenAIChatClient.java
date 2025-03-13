@@ -17,7 +17,7 @@ public class OpenAIChatClient {
    }
 
    public ChatCompletionResponse retrieveCompletion(Map<Object, Object> requestBody) {
-      var apiKey = AADVSettingsState.get().get(OPEN_AI_API_KEY);
+      var apiKey = AADVSettingsState.instance().get(OPEN_AI_API_KEY);
 
       var request = http.createPostRequest(requestBody, apiKey, API_URL);
 
